@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Bikini Bottom Game </title>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!--<link rel="stylesheet" type="text/css" href="reset.css">-->
+	<!--<link rel="stylesheet" type="text/css" href="style.css">-->
+
+</head>
+<body>
+<h1> Bikini Bottom Collector!</h1>
+
+<div class ="main">
+	<div class="instructions">
+		<p>You will be given a random number at the start of the game.</p>
+
+		<p>There are four Spongebob charaters below. By clicking on a character you will add a specific amount of points to your total score.</p>
+
+		<p>You win the game by matching your total score to a random number, you lose the game if your total score goes above the random number.</p>
+
+		<p>The value of each character is hidden from you until you click on it.</p>
+
+		<p>Each time when the game starts, the game will change the values of each crystal.</p>
+	</div>
+	
+	<div id="computerScore">
+		<h3>computer generated score goes here</h3>
+	</div>
+	<div id="gainsandlosses">
+		<p>Wins: #</p>
+		<p>Losses: #</p>
+	</div>
+
+	<div class="characters">
+		<img id ="spongebob" src="assets/images/spongebob.jpg" alt="Spongebob Character" width="130px" height="130px">
+		<img id="squidward" src="assets/images/squidward.jpg" alt="Squidward Character" width="130px" height="130px">
+		<img id="patrick" src="assets/images/patrick.png" alt="Patrick Character" width="130px" height="130px">
+		<img id="plankton" src="assets/images/plankton.jpg" alt="Plankton Character" width="130px" height="130px">
+	</div>
+
+	<div id="totalscore">
+		<p>Your total score is: #</p>
+	</div>
+
+	<div id="charactercounter">
+		# goes here
+	</div>
+
+
+
+
+</div>	
+<script type="text/javascript">
+
+
+const spongebobPoints = 4,
+	  squidwardPoints = 7,
+	  patrickPoints = 8,
+	  planktonPoints = 12;
+var   userScore = 0,
+	  randomScore,
+	  winsCounter = 0,
+	  losesCounter = 0;
+
+$(document).ready(function(){
+
+
+	//when spongebob clicked
+	$("#spongebob").on("click", function() {
+		
+		userScore += spongebobPoints;
+		console.log(userScore);
+			if (randomScore === userScore){
+				wins();
+				//update wins
+			}
+	})
+//when squidward is clicked 
+
+	$("#squidward").on("click", function() {
+		userScore += squidwardPoints;
+		console.log(userScore);
+	})
+//when patrick is clicked
+	$("#patrick").on("click", function(){
+		userScore += patrickPoints;
+		console.log(userScore);
+	})
+
+//when plankton is clicked
+
+
+function generateScore(min, max){
+	//min = Math.ceil(19);
+	//max = Math.floor(120);
+	randomScore = 12;
+	$("#computerScore").innerHTML = this.randomScore;
+	//Math.floor(Math.random() * (max - min)) + min;
+} 
+
+function wins() {
+	alert("you won!");
+	userScore = 0;
+	winsCounter ++;
+	console.log(winsCounter);
+}
+
+function loses() {
+	alert("you lost!");
+	userScore = 0;
+	losesCounter --;
+	console.log(losesCounter);
+}
+
+
+
+
+});
+	
+
+</script>
+<!--<script type="text/javascript" src="assets/javascript/game.js"></script>-->
+</body>
+</html>
