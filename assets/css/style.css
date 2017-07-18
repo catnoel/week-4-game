@@ -1,4 +1,7 @@
-.instructions {
-	border: 10px solid black;
-	float: left;
+html {
+	background-image: url(../images/spongebobbackground.jpg);
+}
+
+title {
+	font-style: bold;
 }

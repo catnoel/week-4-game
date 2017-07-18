@@ -3,8 +3,8 @@
 <head>
 	<title> Bikini Bottom Game </title>
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<!--<link rel="stylesheet" type="text/css" href="reset.css">-->
-	<!--<link rel="stylesheet" type="text/css" href="style.css">-->
+	<!--<link rel="stylesheet" type="text/css" href="assets/css/reset.css"-->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 </head>
 <body>
@@ -24,11 +24,11 @@
 	</div>
 	
 	<div id="computerScore">
-		<h3>computer generated score goes here</h3>
+		<h3>Score To Reach: (click on characters to start)</h3>
 	</div>
 	<div>
-		<p id="wins">Wins: #</p>
-		<p id="loses">Losses: #</p>
+		<p id="wins">Wins: 0</p>
+		<p id="loses">Losses: 0</p>
 	</div>
 
 	<div class="characters">
@@ -39,13 +39,8 @@
 	</div>
 
 	<div id="totalscore">
-		<p>Your total score is: #</p>
+		<p>Your total score is: 0 </p>
 	</div>
-
-	<div id="charactercounter">
-		# goes here
-	</div>
-
 
 
 
@@ -62,6 +57,8 @@ var   userScore = 0,
  	  winsCounter = 0,
 	  losesCounter = 0;
 
+
+
 $(document).ready(function(){
 
 
@@ -70,8 +67,10 @@ $(document).ready(function(){
 	$("#spongebob").on("click", function() {
 		
 		generateScore();
+
 		userScore += spongebobPoints;
 		console.log(userScore);
+		$("#totalscore").html("My Score: " + userScore);
 		if (randomScore === userScore){
 			wins();
 		} else if (userScore > randomScore) {
@@ -84,6 +83,7 @@ $(document).ready(function(){
 		generateScore();
 		userScore += squidwardPoints;
 		console.log(userScore);
+		$("#totalscore").html("My Score: " + userScore);
 		if (randomScore === userScore){
 			wins();
 		}	else if (userScore > randomScore){
@@ -95,6 +95,7 @@ $(document).ready(function(){
 		generateScore();
 		userScore += patrickPoints;
 		console.log(userScore);
+		$("#totalscore").html("My Score: " + userScore);
 		if(randomScore === userScore) {
 			wins();
 		}	else if (userScore > randomScore){
@@ -107,6 +108,7 @@ $(document).ready(function(){
 		generateScore();
 		userScore += planktonPoints;
 		console.log(userScore);
+		$("#totalscore").html("My Score: " + userScore);
 		if(randomScore === userScore){
 			wins();
 		}	else if (userScore > randomScore){
@@ -119,11 +121,13 @@ function generateScore(){
 	//min = Math.ceil(19);
 	//max = Math.floor(120);
 	//randomScore = Math.floor(Math.random() * (max - min)) + min;
-	randomScore = 10;
+	randomScore = 34;
+	$("#computerScore").html("Score To Reach: " + randomScore);
+	
 } 
 
 function wins() {
-	alert("you won!");
+	alert("Aren't you a star?!?!");
 	userScore = 0;
 	winsCounter ++;
 	$("#wins").html("Wins: " + winsCounter);
@@ -131,7 +135,7 @@ function wins() {
 }
 
 function loses() {
-	alert("you lost!");
+	alert("Better Luck Next Time!");
 	userScore = 0;
 	losesCounter ++;
 	$("#loses").html("Loses: " + losesCounter);
