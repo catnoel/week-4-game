@@ -26,9 +26,9 @@
 	<div id="computerScore">
 		<h3>computer generated score goes here</h3>
 	</div>
-	<div id="gainsandlosses">
-		<p>Wins: #</p>
-		<p>Losses: #</p>
+	<div>
+		<p id="wins">Wins: #</p>
+		<p id="loses">Losses: #</p>
 	</div>
 
 	<div class="characters">
@@ -53,62 +53,88 @@
 <script type="text/javascript">
 
 
-const spongebobPoints = 4,
+const spongebobPoints = 1,
 	  squidwardPoints = 7,
 	  patrickPoints = 8,
 	  planktonPoints = 12;
 var   userScore = 0,
 	  randomScore,
-	  winsCounter = 0,
+ 	  winsCounter = 0,
 	  losesCounter = 0;
 
 $(document).ready(function(){
 
 
+
 	//when spongebob clicked
 	$("#spongebob").on("click", function() {
 		
+		generateScore();
 		userScore += spongebobPoints;
 		console.log(userScore);
-			if (randomScore === userScore){
-				wins();
-				//update wins
-			}
+		if (randomScore === userScore){
+			wins();
+		} else if (userScore > randomScore) {
+				loses();
+		}
 	})
 //when squidward is clicked 
 
 	$("#squidward").on("click", function() {
+		generateScore();
 		userScore += squidwardPoints;
 		console.log(userScore);
+		if (randomScore === userScore){
+			wins();
+		}	else if (userScore > randomScore){
+				loses();
+		}
 	})
 //when patrick is clicked
 	$("#patrick").on("click", function(){
+		generateScore();
 		userScore += patrickPoints;
 		console.log(userScore);
+		if(randomScore === userScore) {
+			wins();
+		}	else if (userScore > randomScore){
+				loses();
+		}
 	})
 
 //when plankton is clicked
+	$("#plankton").on("click", function(){
+		generateScore();
+		userScore += planktonPoints;
+		console.log(userScore);
+		if(randomScore === userScore){
+			wins();
+		}	else if (userScore > randomScore){
+				loses();
+		}
+	})
 
 
-function generateScore(min, max){
+function generateScore(){
 	//min = Math.ceil(19);
 	//max = Math.floor(120);
-	randomScore = 12;
-	$("#computerScore").innerHTML = this.randomScore;
-	//Math.floor(Math.random() * (max - min)) + min;
+	//randomScore = Math.floor(Math.random() * (max - min)) + min;
+	randomScore = 10;
 } 
 
 function wins() {
 	alert("you won!");
 	userScore = 0;
 	winsCounter ++;
+	$("#wins").html("Wins: " + winsCounter);
 	console.log(winsCounter);
 }
 
 function loses() {
 	alert("you lost!");
 	userScore = 0;
-	losesCounter --;
+	losesCounter ++;
+	$("#loses").html("Loses: " + losesCounter);
 	console.log(losesCounter);
 }
 
